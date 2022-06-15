@@ -6,7 +6,6 @@ services:
     build:
       context: ./app
       dockerfile: Dockerfile.prod
-    restart: always
     command: gunicorn webapp.wsgi:application --bind 0.0.0.0:8000
     volumes:
       - static_volume:/home/app/web/staticfiles
@@ -18,23 +17,6 @@ services:
     depends_on:
       - db
 
-  nginx:
-    container_name: koi_proxy
-    restart: on-failure
-    image: jonasal/nginx-certbot:latest
-    volumes:
-      - nginx_secrets:/etc/letsencrypt
-      - ./nginx/user_conf.d:/etc/nginx/user_conf.d
-      - static_volume:/home/app/web/staticfiles
-      - media_volume:/home/app/web/mediafiles
-    ports:
-      - 80:80
-      - 443:443
-    env_file:
-      - ./env.nginx
-    depends_on:
-      - web
-
   db:
     container_name: koi_db
     image: postgres:13.0-alpine
@@ -43,9 +25,19 @@ services:
     env_file:
       - ./.env.prod.db
 
- 
+    
+  nginx:
+    container_name: koi_db
+    build: ./nginx
+    volumes:
+      - static_volume:/home/app/web/staticfiles
+      - media_volume:/home/app/web/mediafiles
+    ports:
+      - 1337:80
+    depends_on:
+      - web
+
 volumes:
   postgres_data:
   static_volume:
   media_volume:
-  nginx_secrets:
