@@ -27,7 +27,7 @@ services:
 
     
   nginx:
-    container_name: koi_db
+    container_name: koi_proxy
     build: ./nginx
     volumes:
       - static_volume:/home/app/web/staticfiles
