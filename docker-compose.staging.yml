@@ -2,25 +2,28 @@ version: '3.8'
 
 services:
   web:
+    container_name: koi_web
     build:
       context: ./app
       dockerfile: Dockerfile.prod
-    command: gunicorn hello_django.wsgi:application --bind 0.0.0.0:8000
+    command: gunicorn webbapp.wsgi:application --bind 0.0.0.0:8000
     volumes:
       - static_volume:/home/app/web/staticfiles
       - media_volume:/home/app/web/mediafiles
     expose:
       - 8000
     env_file:
-      - ./.env.prod
+      - ./.env.staging
     depends_on:
       - db
   db:
+    container_name: koi-db
     image: postgres:13.0-alpine
     volumes:
       - postgres_data:/var/lib/postgresql/data/
     env_file:
-      - ./.env.prod.db
+      - ./.env.staging.db
+
   nginx-proxy:
     container_name: nginx-proxy
     build: nginx
@@ -37,10 +40,12 @@ services:
       - /var/run/docker.sock:/tmp/docker.sock:ro
     depends_on:
       - web
+
   nginx-proxy-letsencrypt:
+    container_name: nginx-letsencrypt
     image: jrcs/letsencrypt-nginx-proxy-companion
     env_file:
-      - ./.env.prod.proxy-companion
+      - ./.env.staging.proxy-companion
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - certs:/etc/nginx/certs
