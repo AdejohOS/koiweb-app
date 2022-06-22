@@ -25,22 +25,20 @@ services:
     env_file:
       - ./.env.prod.db
 
-    
   nginx:
     container_name: koi_proxy
-    restart: on-failure
-    image: jonasal/nginx-certbot:latest
+    build: ./nginx
     volumes:
-      - nginx_secrets:/etc/letsencrypt
-      - ./nginx/user_conf.d:/etc/nginx/user_conf.d
+      - static_volume:/home/app/web/staticfiles
+      - media_volume:/home/app/web/mediafiles
     ports:
       - 80:80
-      - 443:443
     depends_on:
       - web
+
+  
 
 volumes:
   postgres_data:
   static_volume:
   media_volume:
-  nginx_secrets:
