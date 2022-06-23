@@ -2,7 +2,6 @@ version: '3.8'
 
 services:
   web:
-    container_name: koi-web
     build:
       context: ./app
       dockerfile: Dockerfile.prod
@@ -16,37 +15,21 @@ services:
       - ./.env.prod
     depends_on:
       - db
-
   db:
-    container_name: koi-db
     image: postgres:13.0-alpine
     volumes:
       - postgres_data:/var/lib/postgresql/data/
     env_file:
       - ./.env.prod.db
-
   nginx:
-    container_name: koi-proxy
-    image: nginx:1.15-alpine
-    ports:                                        
-      - 80:80
-      - 443:443
+    build: ./nginx
     volumes:
-      - ./data/nginx:/etc/nginx/conf.d
-      - ./data/certbot/conf:/etc/letsencrypt
-      - ./data/certbot/www:/var/www/certbot
       - static_volume:/home/app/web/staticfiles
       - media_volume:/home/app/web/mediafiles
+    ports:
+      - 1337:80
     depends_on:
       - web
-    command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'" 
-
-  certbot:
-    image: certbot/certbot
-    volumes:
-      - ./data/certbot/conf:/etc/letsencrypt
-      - ./data/certbot/www:/var/www/certbot
-    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
 
 volumes:
   postgres_data:
