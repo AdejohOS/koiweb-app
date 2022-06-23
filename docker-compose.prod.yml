@@ -2,6 +2,7 @@ version: '3.8'
 
 services:
   web:
+    container_name: koi-web
     build:
       context: ./app
       dockerfile: Dockerfile.prod
@@ -15,19 +16,23 @@ services:
       - ./.env.prod
     depends_on:
       - db
+
   db:
+    container_name: koi-db
     image: postgres:13.0-alpine
     volumes:
       - postgres_data:/var/lib/postgresql/data/
     env_file:
       - ./.env.prod.db
+
   nginx:
+    container_name: koi-proxy
     build: ./nginx
     volumes:
       - static_volume:/home/app/web/staticfiles
       - media_volume:/home/app/web/mediafiles
     ports:
-      - 1337:80
+      - 80:80
     depends_on:
       - web
 
