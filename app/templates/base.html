@@ -29,7 +29,7 @@
     <title>Koinonia | Read and Enjoy Soul Uplifting Articles </title>
     <meta name="description" content="This is a collection of koinonia messages">
 
-    {% elif request.path == '/testimonies/' %}
+    {% elif request.path == '/testimony/' %}
     <title>Koinonia | Testimonies of God's Faithfulness </title>
     <meta name="description" content="This is a collection of koinonia messages">
 
@@ -66,6 +66,8 @@
     <link rel="stylesheet" href="{% static '/css/style.css' %}">
     
 
+    <!--Font Awesome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
     <!--Swiper css-->
     
@@ -124,7 +126,7 @@
                             </li>-->
 
                             <li class="nav-item"><a href="{% url 'messages' %}" class="nav-link {% if request.path == '/sermons/' %} active {%endif%}"> Sermons</a></li>
-                            <li class="nav-item"><a href="{% url 'testimonies' %}" class="nav-link {% if request.path == '/testimonies/' %} active {%endif%}"> Testimonies</a></li>
+                            <li class="nav-item"><a href="{% url 'testimonies' %}" class="nav-link {% if request.path == '/testimony/' %} active {%endif%}"> Testimonies</a></li>
                             <li class="nav-item"><a href="{% url 'blog' %}" class="nav-link {% if request.path == '/blog/' %} active {%endif%}"> Blog</a></li>
                             <li class="nav-item"><a href="{% url 'contact' %}" class="nav-link {% if request.path == '/contact/' %} active {%endif%}"> Contact </a></li>
 
@@ -133,8 +135,8 @@
 
                     <div class="nav-extra">
                         <ul class="extra-list">
-                            <li><a href="{% url 'give' %}" class="extra-link primary"> Give <i class='bx bx-heart-circle'></i></a></li>
-                            <li><a href="{% url 'radio' %}" class="extra-link secondary">Radio <i class='bx bx-radio'></i></a></li>
+                            <li><a href="{% url 'give' %}" class="extra-link primary {% if request.path == '/give/' %} extralink-active {%endif%}"> Give <i class='bx bx-heart-circle'></i></a></li>
+                            <li><a href="{% url 'radio' %}" class="extra-link secondary {% if request.path == '/radio/' %} extralink-active {%endif%}">Radio <i class='bx bx-radio'></i></a></li>
                         </ul>
                     </div>
                 </div>

@@ -99,73 +99,6 @@ let swiperEvents = new Swiper('.upcomingEvents', {
 		});
 
 
-		//json search
-
-	```	const searchField = document.querySelector('#searchField');
-
-		const searchResult = document.querySelector('.search-result');
-		searchResult.style.display = 'none';
-
-		const searchResultInner = document.querySelector('.search-result-inner')
-
-		const searchTable = document.querySelector('.search_table')
-
-		const messageWrapper =document.querySelector('.message-wrapper');
-
-		const messagePagination = document.querySelector ('.message-pagination');
-
-		searchField.addEventListener('keyup', (e) => {
-
-			const searchValue = e.target.value;
-
-			if (searchValue.trim().length>0) {
-				messagePagination.style.display = 'none';
-				
-				console.log('searchValue', searchValue);
-
-				fetch('/message-search', {
-					body: JSON.stringify({ searchText: searchValue }),
-					method:"POST",
-				})
-				.then((res) => res.json())
-				.then((data) => {
-					console.log('data', data);
-
-					messageWrapper.style.display = 'none';
-					
-
-					searchResult.style.display = 'block';
-
-					if (data.length === 0){
-						searchResult.innerHTML = 'No results found'
-					}
-					else{
-						
-						data.forEach(message=>{
-							searchResultInner .innerHTML+=
-						 
-						    <p> </p>
-							<p></p>
-						 
-						 
-						 
-						 
-
-						})
-						 
-					}
-
-				});
-
-			}
-			else{
-				messagePagination.style.display = 'block';
-				messageWrapper.style.display = 'block';
-				searchResult.style.display = 'none';
-			}
-
-		}); ```
-
 // Search form
 // 1. Get search form and page links
 let searchForm = document.getElementById('searchForm')
@@ -191,3 +124,29 @@ if(searchForm){
 		})
 	}
 }
+
+
+// testimoni pop
+
+let preveiwContainer = document.querySelector('.testimony-preview');
+let previewBox = preveiwContainer.querySelectorAll('.preview');
+
+document.querySelectorAll('.blog-row .blog-col').forEach(product =>{
+  product.onclick = () =>{
+    preveiwContainer.style.display = 'flex';
+    let name = product.getAttribute('data-name');
+    previewBox.forEach(preview =>{
+      let target = preview.getAttribute('data-target');
+      if(name == target){
+        preview.classList.add('activate');
+      }
+    });
+  };
+});
+
+previewBox.forEach(close =>{
+  close.querySelector('.fa-times').onclick = () =>{
+    close.classList.remove('activate');
+    preveiwContainer.style.display = 'none';
+  };
+});

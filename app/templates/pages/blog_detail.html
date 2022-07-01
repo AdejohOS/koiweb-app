@@ -4,7 +4,7 @@
 
 {% block content %}
 
-<section class="hero give">
+<section class="hero hero-pages">
     <img src="{% static '/img/koibnb.jpg' %}" alt="" class="hero-img">
     <div class="overlay"></div>
 
@@ -14,21 +14,32 @@
     </div>
 </section>
 
-<section class="blog_details">
-    <div class="blog_details_container">
+<section class="blog">
+    <div class="blog-container-details">
 
         <div class="blog_details_content">
             <div class="blog_details_content_writer">
-                <p>Written by:</p> 
-                <p>Adejo Ojochenemi Sunday</p>
+                <p class="date">March 05, 2022 -- <i class='bx bx-purchase-tag'></i> Finance, Marriage</p>
+                
+                <h3>Mankind and Cultural Relationship</h3>
+                <p class="lil-title"> A new dimension</p>
+                <p class="message-date">Written By: Sunday Ojochenemi Adejoh </p>
+                
+                
+            </div>
+            <div class="blog-details-gallery">
+                <div class="blog-gallery">
+                    <img src="{% static '/img/place.png' %}" alt="">
+                    <img src="{% static '/img/place.png' %}" alt="">
+                    <img src="{% static '/img/place.png' %}" alt="">
+                    <img src="{% static '/img/place.png' %}" alt="">
+                    <img src="{% static '/img/place.png' %}" alt="">
+                    <img src="{% static '/img/place.png' %}" alt="">   
 
+                </div>
             </div>
 
             <div class="blog_details_content_writer_story">
-                <h3>Mankind and Cultural Relationship</h3>
-                <p class="date">March 05, 2022 -- <i class='bx bx-purchase-tag'></i> Finance, Marriage</p>
-                <img src="{% static '/img/place.png' %}" alt="">
-
                 <p>
                     “Breathe in…breathe out…. You do it 12-14 times a minute without thinking”, says Stacey W.
 

@@ -38,16 +38,6 @@ def sermon_details(request, slug=None):
     return render(request, 'pages/message_detail.html', context)
 
 
-def testimonies(request):
-    context = {}
-    return render(request, 'pages/testimonies.html', context)
-
-
-def blog(request):
-    context = {}
-    return render(request, 'pages/blog.html', context)
-
-
 def begin(request):
     context = {}
     return render(request, 'pages/begin.html', context)

@@ -4,7 +4,7 @@
 
 {% block content %}
 
-<section class="hero give">
+<section class="hero hero-pages">
     <img src="{% static '/img/koibnb.jpg' %}" alt="" class="hero-img">
     <div class="overlay"></div>
 
@@ -46,40 +46,30 @@
             <div class="blog-showcase-container">
 
                 <h2 class="sub-title">Featured Post</h2>
+                
                 <div class="blog-row">
-                    
-                    <div class="blog-col blog-col1">
-                        <a href="">
-                            <img src="{% static '/img/place.png' %}" alt="">
-                            <p class="date">March 05, 2022</p>
-                            <h3>Mankind and Cultural Relationship</h3>
-                            <p class="date"><i class='bx bx-purchase-tag'></i> Finance, Marriage</p>
+        
+                    {% for post in posts %}
+                    <div class="blog-col">
+                        <a href="{% url 'post_details' %}">
+                            <img src="{{post.post_image.url}}" alt="">
+                            <p class="date">{{post.date_created | date:"F d Y"}}</p>
+                            <h3>{{post.title}}</h3>
+
+                            {% for tag in post.tag.all %}
+                            <p class="date"><i class='bx bx-purchase-tag'></i> {{tag}}</p>
+                            {% endfor %}
                         </a> 
                         
                     </div>
-
-                    <div class="blog-col blog-col2">
-                        <a href="">
-                            <img src="{% static '/img/place.png' %}" alt="">
-                            <p class="date">March 05, 2022</p>
-                            <h3>The Pathway to Success</h3>
-                            <p class="date"><i class='bx bx-purchase-tag'></i> Finance, Marriage</p>
-                        </a>
-                    </div>
-
-                    <div class="blog-col blog-col3">
-                        <a href="">
-                            <img src="{% static '/img/place.png' %}" alt="">
-                            <p class="date">March 05, 2022</p>
-                            <h3>The Evidence of Good Leadership</h3>
-                            <p class="date"><i class='bx bx-purchase-tag'></i> Finance, Marriage</p>
-                        </a>
-                    </div>
+                    {% endfor %}
                 
                 </div>
+                
             </div>
             
         </div>
+        {% include 'pagination.html' with queryset=posts%}
 
         
 

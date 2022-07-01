@@ -4,7 +4,7 @@
 
 {% block content %}
 
-<section class="hero give">
+<section class="hero hero-pages">
     <img src="{% static '/img/koibnb.jpg' %}" alt="" class="hero-img">
     <div class="overlay"></div>
 
@@ -80,7 +80,7 @@
                         
                     </div>
 
-                    <div class="blog-col">
+                    <div class="blog-col" data-name="p-4">
                         
                             <img class="testimony_img" src="{% static '/img/test4.jpg' %}" alt="">
                             <p class="date">March 05, 2022</p>
@@ -89,17 +89,17 @@
                        
                     </div>
 
-                    <div class="blog-col">
+                    <div class="blog-col" data-name="p-5">
                        
                             
-                            <img src="{% static '/img/test5.jpg' %}" alt="">
+                                <img src="{% static '/img/test5.jpg' %}" alt="">
                             <p class="date">March 05, 2022</p>
                             <p class="date">Alade S. | Louisiana, USA</p>
                             <h3>Miracle Job in 24hrs</h3>
                         
                     </div>
 
-                    <div class="blog-col">
+                    <div class="blog-col" data-name="p-6">
                         
                             <img class="testimony_img" src="{% static '/img/test6.jpg' %}" alt="">
                             <p class="date">March 05, 2022</p>
@@ -114,11 +114,45 @@
             
         </div>
         
-        </div>
+    </div>
     
 
        
 </section>
+
+<div class="testimony-preview">
+
+    <div class="preview" data-target="p-1">
+        <i class="fas fa-times"></i>
+        <img src="{% static '/img/test1.jpg' %}" alt="">
+    </div>
+
+    <div class="preview" data-target="p-2">
+        <i class="fas fa-times"></i>
+        <img src="{% static '/img/test2.jpg' %}" alt="">
+    </div>
+
+    <div class="preview" data-target="p-3">
+        <i class="fas fa-times"></i>
+        <img src="{% static '/img/test3.jpg' %}" alt="">
+    </div>
+
+    <div class="preview" data-target="p-4">
+        <i class="fas fa-times"></i>
+        <img src="{% static '/img/test4.jpg' %}" alt="">
+    </div>
+
+    <div class="preview" data-target="p-5">
+        <i class="fas fa-times"></i>
+        <img src="{% static '/img/test5.jpg' %}" alt="">
+    </div>
+
+    <div class="preview" data-target="p-6">
+        <i class="fas fa-times"></i>
+        <img src="{% static '/img/test6.jpg' %}" alt="">
+    </div>
+
+</div>
 
 
 
