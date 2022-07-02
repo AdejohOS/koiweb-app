@@ -145,6 +145,9 @@
     color: var(--white);
     padding: 30px;
 }
+.hero-pages{
+    height: 40vh;
+}
 
 .hero .hero-img {
     position: absolute;
@@ -1529,6 +1532,9 @@
         padding: 100px;
         height: 100vh;
     }
+    .hero-pages{
+        height: 50vh;
+    }
     
     .hero-text h2 {
         font-size: 4em;
@@ -1669,9 +1675,7 @@
         margin-right: auto;
         margin-left: auto;
     }
-    .hero-pages{
-        height: 50vh;
-    }
+    
     
 
     .about-container {
